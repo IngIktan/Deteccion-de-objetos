@@ -1,0 +1,73 @@
+
+conda create -n yolov7 python=3.9
+
+
+conda activate yolov7
+conda deactivate
+
+
+pip install -r requirements.txt
+
+
+pip install torch==1.11.0+cu113 torchvision==0.12.0+cu113 torchaudio==0.11.0 --extra-index-url https://download.pytorch.org/whl/cu113
+
+>>> import torch
+>>> torch.cuda.is_available()
+>>> exit()
+
+
+//para entrenar 
+python train.py --workers 1 --device 0 --batch-size 4 --data data/rescatistas.yaml --img 640 640 --cfg cfg/training/yolov7.yaml --weights 'yolov7.pt' --name yolov7-custom --hyp data/hyp.scratch.custom.yaml
+
+
+python detect.py --weights runs/train/yolov7-custom4/weights/best.pt --conf 0.25 --img-size 640 --source inference/images/rescatistas4.jpg
+
+
+pip3 install labelImg
+labelImg
+--------------------------------
+	#enternamieto 
+from google.colab import drive
+drive.mount('/content/drive')
+
+%cd /content/drive/MyDrive/mi_proyecto
+
+!git clone https://github.com/WongKinYiu/yolov7.git
+
+!wget https://github.com/WongKinYiu/yolov7/releases/download/v0.1/yolov7.pt
+
+pip install -r requirements.txt
+
+pip install torch==1.11.0+cu113 torchvision==0.12.0+cu113 torchaudio==0.11.0 --extra-index-url https://download.pytorch.org/whl/cu113
+
+!python train.py --workers 1 --device 0 --batch-size 16 --data data/Entrenador.yaml --img 640 640 --cfg cfg/training/yolov7.yaml --weights 'yolov7.pt' --name yolov7-custom --hyp data/hyp.scratch.custom.yaml
+
+
+
+
+-----------------------------
+-------------------------------
+##PARA ENTRENAR CON VIDEO
+python detect.py --weights runs/train/yolov7-custom3/wights/best.pt --conf 0.25 --img-size 640 --source /content/drive/MyDrive/mi_proyecto/TheCodingBug/yolov7/inference/images/Prueba pet.mp4
+
+
+
+--------------------------
+-----------------------------------
+##PARA REAUNDAR PODEMOS 
+
+from google.colab import drive
+drive.mount('/content/drive')
+
+%cd /content/drive/MyDrive/mi_proyecto/TheCodingBug/yolov7
+
+!python train.py --weights runs/train/yolov7-custom4/weights/last.pt --data data/Entrenador.yaml --cfg cfg/training/yolov7.yaml --resume
+
+
+---------------------------------------
+F:\YOLOV7
+
+
+//Para abrir la etiquetadora 
+cd C:\Users\dafsg\labelImg-master
+python labelImg.py
